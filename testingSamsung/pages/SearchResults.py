@@ -6,12 +6,9 @@ class SearchResults:
     def __init__(self, driver):
         self.driver = driver
         self.search_results_bar = "search-result-global-srp-tab-bar__link"
-        # google if this variable is only available here!!
-        # we can verify this by using - document.getElementsByClassName("search-result-global-srp-tab-bar__link")
         self.product_title = "Galaxy S24 Ultra"
         self.product_price_element = "result-price__money"
         self.product_original_price_element = "search-result-global__result-price__normal-money"
-        # when there's a sale there's an original price element
         self.product_details_element = "search-result-global__result-item__content"
         self.product_title_element = "a.search-result-global__result-title__link"
 
@@ -22,8 +19,6 @@ class SearchResults:
     def get_product_title(self):
         product_title = self.driver.find_elements(By.LINK_TEXT, self.product_title)
         assert product_title is not None, f"Product '{self.product_title}' was not found"
-        # EDEN'S ONLY CONTRIBUTION
-        # Ask kobi what is cleaner code "is not None" OR "len != 0"
 
     def get_product_price(self):
         self.driver.implicitly_wait(3)
