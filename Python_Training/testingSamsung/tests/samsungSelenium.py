@@ -10,9 +10,6 @@ class SamsungSelenium:
         driver.get(url)
         driver.maximize_window()
         driver.implicitly_wait(10)
-        # makes the program wait UNTIL X seconds if the element isn't found
-        # If the element is found after 1 sec (for eg) it proceeds after 1 second,
-        # If we get a timeout = exception
         return driver
 
     def selenium_end(self, driver):
