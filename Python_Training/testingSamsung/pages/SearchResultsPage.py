@@ -46,8 +46,8 @@ class SearchResultsPage:
         for item_in_array in product_details_dynamic:
             item_text = item_in_array.text
             item_text_split = item_text.split("\n")
-            for j in item_text_split:
-                if self.product_title == j:
+            for item_after_split_in_array in item_text_split:
+                if self.product_title == item_after_split_in_array:
                     if len(item_text_split) == 6:
                         currency_type = item_text_split[1][:1]
                         price_after_discount = float(item_text_split[1].split("(")[0][1:])
@@ -60,7 +60,9 @@ class SearchResultsPage:
                     elif len(item_text_split) == 5:
                         currency_type = item_text_split[1][:1]
                         price_before_discount = float(item_text_split[1][1:-8])
-                        assert price_before_discount > 0, "Error! The price before discount isn't positive"
+                        assert price_before_discount < 0, "Error! The price before discount isn't positive"
+                        # assert will purposefully fail,
+                        # In order to assert as intended, make sure that price is greater than 0 (x>0)
                         print(f"The price for the product is {currency_type}{price_before_discount}")
                         return
 
