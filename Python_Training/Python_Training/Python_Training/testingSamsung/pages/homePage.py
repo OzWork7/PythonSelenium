@@ -9,7 +9,7 @@ class homePage():
         self.search_submit = "gnb-search__input-btn--search"
         self.search_Bar = "gnb-search__input"
 
-    def search_Function(self):
+    def search_function(self):
         search_Icon = self.driver.find_element(By.CLASS_NAME, self.search_Icon)
         search_submit = self.driver.find_element(By.CLASS_NAME, self.search_submit)
         search_Icon.click()

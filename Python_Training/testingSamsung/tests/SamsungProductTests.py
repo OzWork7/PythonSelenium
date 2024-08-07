@@ -1,20 +1,21 @@
 import unittest
 
 from Python_Training.testingSamsung.pages.HomePage import HomePage
-from Python_Training.testingSamsung.tests.globalSamsung import urlSamsung
-from Python_Training.testingSamsung.tests.samsungSelenium import samsungSelenium
+from Python_Training.testingSamsung.tests.globalSamsung import urlSamsung, product_title
+from Python_Training.testingSamsung.tests.SamsungSelenium import SamsungSelenium
 
-from Python_Training.testingSamsung.pages.SearchResults import SearchResults
+from Python_Training.testingSamsung.pages.SearchResultsPage import SearchResultsPage
 
 
 class SamsungProductTests(unittest.TestCase):
 
     def setUp(self):
-        base = samsungSelenium()
+        base = SamsungSelenium()
         self.driver = base.selenium_start(urlSamsung)
-        home_page = HomePage(self.driver)
-        home_page.search_Function()
-        self.search_results = SearchResults(self.driver)
+        self.product_title = product_title
+        home_page = HomePage(self.driver, self.product_title)
+        home_page.search_function()
+        self.search_results = SearchResultsPage(self.driver, self.product_title)
         self.test_product_successful_search()
         self.test_product_name()
 
@@ -27,14 +28,8 @@ class SamsungProductTests(unittest.TestCase):
     def test_product_price(self):
         self.search_results.get_product_price()
 
-
     def tearDown(self):
-        print("TearDown")
-        self.base = samsungSelenium()
+        print("Test tear down")
+        self.base = SamsungSelenium()
         self.base.selenium_end(self.driver)
 
-    if __name__ == "__main":
-        unittest.main()
-
-
-        print("Test End")

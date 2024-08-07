@@ -12,6 +12,6 @@ class s24_Test(unittest.TestCase):
         driver = base.selenium_start(urlSamsung)
         home_Page = homePage(driver)
 
-        home_Page.search_Function()
+        home_Page.search_function()
 
         print("Test End")
